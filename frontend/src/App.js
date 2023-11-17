@@ -6,40 +6,51 @@ const backgroundImages = [
   '/codeflex.png',
   '/a1338166.png',
   '/a1.jpg',
-  // '/a2.jpg',
   '/a3.jpg',
-  // '/a4.jpg',
-  // '/a5.jpg',
-  '/a6.jpg',
-  '/a7.jpg',
-  // '/a8.jpg',
+   '/home-bg2.jpg',
+  '/home-bg3.jpg',
   '/a9.jpg',
-  '/a10.jpg'
   
   // Add more images as needed
 ];
+
 function App() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // This is where setCurrentImageIndex is defined
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [backgroundStyle, setBackgroundStyle] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => { // useEffect is used here
-    const intervalId = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); // Change image every 3000 milliseconds (3 seconds)
+  useEffect(() => {
+    // Optionally preload images
+    backgroundImages.forEach(image => {
+      const img = new Image();
+      img.src = image;
+    });
 
-    return () => clearInterval(intervalId); // Clean up interval on component unmount
+    // Update background image every 10 seconds
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex(prevIndex => (prevIndex + 1) % backgroundImages.length);
+    }, 7000);
+
+    return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    // Update background style
+    const newBackgroundStyle = {
+      backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+      transition: 'background-image 0.5s ease-in-out',
+    };
+    setBackgroundStyle(newBackgroundStyle);
+  }, [currentImageIndex]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log({ email, password });
   };
 
- 
-
   return (
-    <div className="app" style={{ backgroundImage: `url(${backgroundImages[currentImageIndex]})` }}>
+    <div className="app" style={backgroundStyle}>
       <div className="loginContainer">
           <h1 className="appTitle">CodeFlex Hub</h1>
           <form className="signInForm" onSubmit={handleSubmit}>
