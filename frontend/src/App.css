@@ -1,19 +1,33 @@
 .app {
   /* Add a background image here if you have one */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%), url("C:\Users\shrey\Desktop\My React Django Project\React-Django\frontend\1338166.png") no-repeat center center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%), url("C:\Users\shrey\Desktop\My React Django Project\React-Django\frontend\a1.jpg") no-repeat center center;
   background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+  animation: combineEffects 9s infinite;
 }
+@keyframes combineEffects {
+  
+  0% { background-position: 0 100%; }
+  33% { background-position: 50% 100%; }
+  66% { background-position: 100% 50%; }
+  100% { background-position: 0 100%; }
+  
+ 
+}
+
 
 .loginContainer {
   width: 450px;
   padding: 60px;
   background-color: rgba(42, 40, 38, 0.481);
-  border-radius: 4px;
-  box-shadow: 0 4px 60px rgba(147, 54, 54, 0.5);
+  border-radius: 2px;
+  box-shadow: 0 2px 40px rgba(86, 176, 163, 0.5);
 }
 
 /* Rest of your styles remain the same */
@@ -64,7 +78,8 @@
 
 /* Add additional styles as needed */
 .appTitle {
-  color:  #ff00c8; /* This is the Netflix red, for example */
+  color:  rgb(129, 23, 121); /* This is the Netflix red, for example */
+  /* background-color: rgb(131, 65, 127); */
 }
 
 .signInHeading {
